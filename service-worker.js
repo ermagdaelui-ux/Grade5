@@ -1,9 +1,13 @@
 const CACHE_NAME = "grade-app-v1";
+
 const urlsToCache = [
-  "index.html"
+  "./",
+  "index.html",
+  "manifest.json",
+  "icon-192.png",
+  "icon-512.png"
 ];
 
-// Install
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -11,7 +15,6 @@ self.addEventListener("install", event => {
   );
 });
 
-// Fetch
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request)
