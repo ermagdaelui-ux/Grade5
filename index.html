@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grade Checker</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  background: blue;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 95%;
+  cursor: pointer;
+}
+
+button:hover {
+  background: darkblue;
+}
+
+#output {
+  margin-top: 20px;
+  font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Situation 1: Input -->
+  <h2>Enter Details</h2>
+
+  <input type="text" id="name" placeholder="Enter Name"><br>
+  <input type="text" id="prof" placeholder="Enter Professor Name"><br>
+  <input type="number" id="grade" placeholder="Enter P1 Grade"><br>
+
+  <button onclick="checkGrade()">Check Result</button>
+
+  <!-- Situation 2: Output -->
+  <div id="output"></div>
+
+</div>
+
+<script>
+function checkGrade() {
+  let name = document.getElementById("name").value;
+  let prof = document.getElementById("prof").value;
+  let grade = document.getElementById("grade").value;
+
+  let result = "";
+
+  if (grade >= 80) {
+    result = "PASSED";
+  } else {
+    result = "FAILED";
+  }
+
+  document.getElementById("output").innerHTML =
+    "Name: " + name + "<br>" +
+    "Professor: " + prof + "<br>" +
+    "Result: " + result;
+}
+
+// Register Service Worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service Worker Registered"));
+}
+</script>
+
+</body>
+</html>
