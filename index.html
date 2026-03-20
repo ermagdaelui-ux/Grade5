@@ -7,6 +7,7 @@
 <title>Grade Checker</title>
 
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1565C0">
 
 <style>
 body {
@@ -31,7 +32,7 @@ input {
 }
 
 button {
-  background: blue;
+  background: #1565C0;
   color: white;
   border: none;
   padding: 10px;
@@ -40,7 +41,7 @@ button {
 }
 
 button:hover {
-  background: darkblue;
+  background: #0D47A1;
 }
 
 #output {
@@ -48,13 +49,11 @@ button:hover {
   font-weight: bold;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
-
-  <!-- Situation 1: Input -->
   <h2>Enter Details</h2>
 
   <input type="text" id="name" placeholder="Enter Name"><br>
@@ -63,24 +62,16 @@ button:hover {
 
   <button onclick="checkGrade()">Check Result</button>
 
-  <!-- Situation 2: Output -->
   <div id="output"></div>
-
 </div>
 
 <script>
 function checkGrade() {
   let name = document.getElementById("name").value;
   let prof = document.getElementById("prof").value;
-  let grade = document.getElementById("grade").value;
+  let grade = parseInt(document.getElementById("grade").value);
 
-  let result = "";
-
-  if (grade >= 80) {
-    result = "PASSED";
-  } else {
-    result = "FAILED";
-  }
+  let result = grade >= 80 ? "PASSED" : "FAILED";
 
   document.getElementById("output").innerHTML =
     "Name: " + name + "<br>" +
@@ -90,8 +81,10 @@ function checkGrade() {
 
 // Register Service Worker
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("Service Worker Registered"));
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("Service Worker Registered"));
+  });
 }
 </script>
 
