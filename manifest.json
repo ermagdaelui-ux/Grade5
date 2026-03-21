@@ -1,8 +1,7 @@
 {
   "name": "Grade Checker App",
-  "short_name": "Grades",
-  "start_url": "./",
-  "scope": "./",
+  "short_name": "Grades Checker App",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#1E88E5",
   "theme_color": "#1565C0",
