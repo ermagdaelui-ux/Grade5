@@ -8,16 +8,18 @@ const urlsToCache = [
   "icon-512.png"
 ];
 
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+self.addEventListener("install", function (e) {
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(function(cache){
+      return cache.addAll(urlsToCache);
+    })
   );
 });
 
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+self.addEventListener("fetch", function (e) {
+  e.respondWith(
+    caches.match(e.request).then(function(response){
+      return response || fetch(e.request);
+    })
   );
 });
